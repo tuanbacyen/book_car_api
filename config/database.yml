@@ -16,6 +16,5 @@ test:
 
 production:
   <<: *default
+  adapter: mysql2
   database: book_car_v2_production
-  username: book_car_v2
-  password: <%= ENV['BOOK_CAR_V2_DATABASE_PASSWORD'] %>
