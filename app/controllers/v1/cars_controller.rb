@@ -1,4 +1,3 @@
-
 class V1::CarsController < ApplicationController
   before_action :load_car, only: %i(update)
 

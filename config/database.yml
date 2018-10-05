@@ -12,7 +12,7 @@ development:
 
 test:
   <<: *default
-  database: book_car
+  database: book_car_test
 
 production:
   <<: *default
