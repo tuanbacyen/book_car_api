@@ -19,8 +19,6 @@ class Booking < ApplicationRecord
   private
 
   def booking_car
-    if Booking.all.present?
-      Booking.destroy_all
-    end
+    Booking.destroy_all if Booking.all.present?
   end
 end

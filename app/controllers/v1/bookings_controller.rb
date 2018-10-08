@@ -31,9 +31,8 @@ class V1::BookingsController < ApplicationController
       else
         render_js nil, "Xoa dat xe khong thanh cong"
       end
-    else
-      render_js nil, "request not exits"
     end
+    render_js nil, "request not exits"
   end
 
   private
