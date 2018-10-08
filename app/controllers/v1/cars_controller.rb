@@ -4,48 +4,24 @@ class V1::CarsController < ApplicationController
   def index
     cars = Car.select :id, :ten_xe, :ten_tai_xe, :bien_so, :gia_tien,
       :hang_xe, :sdt, :kinh_do, :vi_do, :vi_do, :trang_thai
-    render json: {
-      status: 200,
-      error: false,
-      message: "susses",
-      data: cars
-    }, status: 200
+
+    render_js cars, "tất cả các xe"
   end
 
   def create
     car = Car.new car_params
     if car.save
-      render json: {
-        status: 200,
-        error: false,
-        message: "",
-        data: car.load_structure
-      }, status: 200
+      render_js car.load_structure, "tao xe thanh cong"
     else
-      render json: {
-        status: 500,
-        error: true,
-        message: car.errors.full_messages.to_sentence,
-        data: nil
-      }, status: 500
+      render_js nil, "errors #{car.errors.full_messages.to_sentence}"
     end
   end
 
   def update
     if @car.update_attributes car_params
-      render json: {
-        status: 200,
-        error: false,
-        message: "success",
-        data: @car.load_structure
-      }, status: 200
+      render_js @car.load_structure, "cap nhat xe ko thanh cong"
     else
-      render json: {
-        status: 500,
-        error: true,
-        message: @car.errors.full_messages.to_sentence,
-        data: nil
-      }, status: 500
+      render_js nil, "errors #{@car.errors.full_messages.to_sentence}"
     end
   end
 
@@ -53,19 +29,9 @@ class V1::CarsController < ApplicationController
     car = Car.find_by id: params[:id]
     car.trang_thai = !@car.trang_thai
     if car.save
-      render json: {
-        status: 200,
-        error: false,
-        message: "success",
-        data: car.load_structure
-      }, status: 200
+      render_js car.load_structure, "success"
     else
-      render json: {
-        status: 500,
-        error: true,
-        message: car.errors.full_messages.to_sentence,
-        data: nil
-      }, status: 500
+      render_js nil, "errors #{car.errors.full_messages.to_sentence}"
     end
   end
 
@@ -74,12 +40,7 @@ class V1::CarsController < ApplicationController
   def load_car
     @car = Car.find_by id: params[:id]
     return if @car
-    render json: {
-      status: 404,
-      error: true,
-      message: "car not exist",
-      data: nil
-    }, status: 404
+    render_js nil, "car not exist"
   end
 
   def car_params
