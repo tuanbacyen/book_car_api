@@ -22,4 +22,9 @@ class Car < ApplicationRecord
     }
     result
   end
+
+  def change_status
+    self.trang_thai = !trang_thai
+    save
+  end
 end

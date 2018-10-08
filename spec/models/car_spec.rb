@@ -32,4 +32,8 @@ RSpec.describe Car, type: :model do
     it { expect(car.load_structure).to eq car.load_structure }
   end
 
+  context ".change_status" do
+    it { expect(car.change_status).to eq true }
+  end
+
 end
