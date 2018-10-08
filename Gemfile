@@ -1,22 +1,23 @@
 source "https://rubygems.org"
-git_source(:github) { |repo| "https://github.com/#{repo}.git" }
+git_source(:github){|repo| "https://github.com/#{repo}.git"}
 
 ruby "2.4.1"
 
-gem "rails", "~> 5.2.1"
+gem "bootsnap", ">= 1.1.0", require: false
 gem "mysql2", ">= 0.4.4", "< 0.6.0"
 gem "puma", "~> 3.11"
-gem "bootsnap", ">= 1.1.0", require: false
 gem "rack-cors"
+gem "rails", "~> 5.2.1"
 
 group :development, :test do
+  gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
   gem "capybara"
-  gem "rspec-rails", "~> 3.8"
-  gem "shoulda-matchers"
   gem "database_cleaner"
   gem "factory_bot_rails", require: false
   gem "faker"
-  gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
+  gem "rspec-rails", "~> 3.8"
+  gem "rubocop", "~> 0.54.0", require: false
+  gem "shoulda-matchers"
 end
 
 group :development do
@@ -26,8 +27,6 @@ group :development do
 end
 
 group :production do
-  gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
 end
-
 
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
