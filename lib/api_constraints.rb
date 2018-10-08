@@ -3,7 +3,8 @@ class ApiConstraints
     @version = option[:version]
     @default = option[:default]
   end
-   def matches? req
+
+  def matches? req
     @default || req.headers["Accept"].include?("application/tms.v#{@version}")
   end
 end

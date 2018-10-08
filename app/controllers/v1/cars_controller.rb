@@ -2,13 +2,13 @@ class V1::CarsController < ApplicationController
   before_action :load_car, only: %i(update)
 
   def index
-    cars = Car.select :id, :ten_xe, :ten_tai_xe, :bien_so, :gia_tien, :hang_xe, :sdt,
-                      :kinh_do, :vi_do, :vi_do, :trang_thai
+    cars = Car.select :id, :ten_xe, :ten_tai_xe, :bien_so, :gia_tien,
+      :hang_xe, :sdt, :kinh_do, :vi_do, :vi_do, :trang_thai
     render json: {
-        status: 200,
-        error: false,
-        message: "susses",
-        data: cars
+      status: 200,
+      error: false,
+      message: "susses",
+      data: cars
     }, status: 200
   end
 
@@ -37,7 +37,7 @@ class V1::CarsController < ApplicationController
         status: 200,
         error: false,
         message: "success",
-        data: @car.load_structure,
+        data: @car.load_structure
       }, status: 200
     else
       render json: {
@@ -57,7 +57,7 @@ class V1::CarsController < ApplicationController
         status: 200,
         error: false,
         message: "success",
-        data: car.load_structure,
+        data: car.load_structure
       }, status: 200
     else
       render json: {
@@ -84,6 +84,6 @@ class V1::CarsController < ApplicationController
 
   def car_params
     params.require(:car).permit :ten_xe, :ten_tai_xe, :bien_so, :gia_tien,
-                                :hang_xe, :sdt, :kinh_do, :vi_do, :trang_thai
+      :hang_xe, :sdt, :kinh_do, :vi_do, :trang_thai
   end
 end
