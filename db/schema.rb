@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_03_094926) do
+ActiveRecord::Schema.define(version: 2018_10_08_023415) do
+
+  create_table "bookings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.float "kd_start"
+    t.float "vd_start"
+    t.float "kd_end"
+    t.float "vd_end"
+    t.float "tong_tien"
+    t.bigint "car_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["car_id"], name: "index_bookings_on_car_id"
+  end
 
   create_table "cars", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "ten_xe"
@@ -26,4 +38,5 @@ ActiveRecord::Schema.define(version: 2018_10_03_094926) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "bookings", "cars"
 end

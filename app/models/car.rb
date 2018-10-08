@@ -1,4 +1,6 @@
 class Car < ApplicationRecord
+  has_many :bookings
+
   validates :ten_xe, presence: true, length: {maximum: 50}
   validates :ten_tai_xe, presence: true, length: {maximum: 50}
   validates :bien_so, presence: true, length: {maximum: 10}
