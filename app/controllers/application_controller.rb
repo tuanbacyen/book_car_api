@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::API
-  def render_js data, mes
+  def my_render_js data, mes
     render json: {
       error: data.present? ? true : false,
       message: mes,
