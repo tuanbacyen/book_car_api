@@ -2,8 +2,8 @@ class V1::CarsController < ApplicationController
   before_action :load_car, only: %i(update)
 
   def index
-    cars = Car.select :id, :ten_xe, :ten_tai_xe, :bien_so, :gia_tien,
-      :hang_xe, :sdt, :kinh_do, :vi_do, :vi_do, :trang_thai
+    cars = []
+    Car.all.each{|c| cars.push c.load_structure}
 
     my_render_js cars, "tất cả các xe"
   end
@@ -11,7 +11,10 @@ class V1::CarsController < ApplicationController
   def create
     car = Car.new car_params
     if car.save
-      my_render_js car.load_structure, "tao xe thanh cong"
+      params[:car][:images].each do |img|
+        car.images.create!(image: img)
+      end
+      render_js car.load_structure, "tao xe thanh cong"
     else
       my_render_js nil, "errors #{car.errors.full_messages.to_sentence}"
     end
@@ -45,6 +48,6 @@ class V1::CarsController < ApplicationController
 
   def car_params
     params.require(:car).permit :ten_xe, :ten_tai_xe, :bien_so, :gia_tien,
-      :hang_xe, :sdt, :kinh_do, :vi_do, :trang_thai
+      :hang_xe, :sdt, :kinh_do, :vi_do, :trang_thai, images_attributes: []
   end
 end

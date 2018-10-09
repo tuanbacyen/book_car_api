@@ -4,6 +4,8 @@ git_source(:github){|repo| "https://github.com/#{repo}.git"}
 ruby "2.4.1"
 
 gem "bootsnap", ">= 1.1.0", require: false
+gem "carrierwave"
+gem "mini_magick"
 gem "mysql2", ">= 0.4.4", "< 0.6.0"
 gem "puma", "~> 3.11"
 gem "rack-cors"
