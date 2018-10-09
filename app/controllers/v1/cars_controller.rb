@@ -14,7 +14,7 @@ class V1::CarsController < ApplicationController
       params[:car][:images].each do |img|
         car.images.create!(image: img)
       end
-      render_js car.load_structure, "tao xe thanh cong"
+      my_render_js car.load_structure, "tao xe thanh cong"
     else
       my_render_js nil, "errors #{car.errors.full_messages.to_sentence}"
     end

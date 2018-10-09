@@ -34,9 +34,11 @@ class Car < ApplicationRecord
   def load_images
     arr = []
     images.each do |img|
+      url = img.image.url
+      url ||= img.image.metadata["url"]
       arr.push(
         id: img.id,
-        url: img.image.url
+        url: url
       )
     end
     arr
