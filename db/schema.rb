@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_08_023415) do
+ActiveRecord::Schema.define(version: 2018_10_09_061920) do
 
   create_table "bookings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.float "kd_start"
@@ -38,5 +38,14 @@ ActiveRecord::Schema.define(version: 2018_10_08_023415) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "car_id"
+    t.string "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["car_id"], name: "index_images_on_car_id"
+  end
+
   add_foreign_key "bookings", "cars"
+  add_foreign_key "images", "cars"
 end
