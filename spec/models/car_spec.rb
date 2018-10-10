@@ -28,12 +28,25 @@ RSpec.describe Car, type: :model do
     it {is_expected.to validate_length_of(:sdt)}
   end
 
+  context "rspec associations" do
+    it {is_expected.to have_many :bookings}
+    it {is_expected.to have_many :images}
+  end
+
+  context "rspec nested" do
+    it{ should accept_nested_attributes_for :images }
+  end
+
   context ".load_structure" do
     it { expect(car.load_structure).to eq car.load_structure }
   end
 
   context ".change_status" do
     it { expect(car.change_status).to eq true }
+  end
+
+  context ".load_images" do
+    it { expect(car.load_images).to eq car.load_images }
   end
 
 end
