@@ -4,6 +4,9 @@ git_source(:github){|repo| "https://github.com/#{repo}.git"}
 ruby "2.4.1"
 
 gem "bootsnap", ">= 1.1.0", require: false
+gem 'bootstrap-sass', '~> 3.3.7'
+gem 'sass-rails', '>= 3.2'
+gem 'jquery-rails'
 gem "carrierwave"
 gem "cloudinary"
 gem "fast_jsonapi"

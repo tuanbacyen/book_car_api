@@ -40,6 +40,6 @@ class Car < ApplicationRecord
         url
       )
     end
-    arr.first.nil? ? "" : arr.first
+    arr.first.nil? ? "http://sohanews.sohacdn.com/thumb_w/660/2017/photo1513394146174-1513394146174.png" : arr.first
   end
 end
