@@ -18,8 +18,8 @@ class Car < ApplicationRecord
       gia_tien: gia_tien,
       hang_xe: hang_xe,
       sdt: sdt,
-      kinh_do: kinh_do,
-      vi_do: vi_do,
+      kinh_do: kinh_do.to_s,
+      vi_do: vi_do.to_s,
       trang_thai: trang_thai,
       images: load_images
     }
@@ -37,10 +37,9 @@ class Car < ApplicationRecord
       url = img.image.url
       url ||= img.image.metadata["url"]
       arr.push(
-        id: img.id,
-        url: url
+        url
       )
     end
-    arr
+    arr.first.nil? ? "" : arr.first
   end
 end
